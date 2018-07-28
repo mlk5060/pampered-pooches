@@ -1,5 +1,6 @@
 package com.martynlk.pamperedpooches.booking.mapper;
 
+import org.apache.commons.lang.StringUtils;
 import org.mapstruct.BeforeMapping;
 import org.mapstruct.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,10 @@ public abstract class BookingMapper {
     
     @BeforeMapping
     protected void generateReference(BookingDto bookingDto) { 
-        String reference = bookingReferenceGenerator.generateReference();
-        bookingDto.assignReference(reference);
+        if(StringUtils.isBlank(bookingDto.getReference())) {
+            String reference = bookingReferenceGenerator.generateReference();
+            bookingDto.setReference(reference);
+        }
     }
     
     public abstract BookingEntity dtoToEntity(BookingDto bookingDto);

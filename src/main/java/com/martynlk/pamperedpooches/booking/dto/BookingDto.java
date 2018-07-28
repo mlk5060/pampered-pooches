@@ -2,8 +2,6 @@ package com.martynlk.pamperedpooches.booking.dto;
 
 import java.time.LocalDateTime;
 
-import org.apache.commons.lang.StringUtils;
-
 public class BookingDto {
 
     private String reference;
@@ -40,11 +38,5 @@ public class BookingDto {
 
     public void setActive(boolean active) {
         this.active = active;
-    }
-    
-    public void assignReference(String reference) {
-        if(StringUtils.isBlank(this.reference)) {
-            this.reference = reference;
-        }
     }
 }
